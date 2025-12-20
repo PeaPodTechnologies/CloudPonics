@@ -23,7 +23,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { collection, getDocs, getFirestore } from '@firebase/firestore';
 
 // My Components, Types
-import DeviceRegister from './DeviceRegister';
+import DeviceRegister from '../molecules/DeviceRegister';
 
 // Styles
 const styles = (theme: Theme) => createStyles({
@@ -74,19 +74,19 @@ const SignupForm: FC<SignupProps> = (props: SignupProps) => {
     // Selection state
     const [selection, setSelection] = useState<{[id: string]: ProduceSelection}>({});
 
-    useEffect(() => {
-        getDocs(collection(getFirestore(), 'options')).then(docs=>{
-            setSelection(Object.fromEntries(docs.docs.map(doc=>{
-                return [doc.id, {
-                    quantity: 0, 
-                    option: {
-                        name: doc.data().name, 
-                        price: doc.data().price
-                    }
-                }];
-            })));
-        });
-    }, [user]);
+    // useEffect(() => {
+    //     getDocs(collection(getFirestore(), 'options')).then(docs=>{
+    //         setSelection(Object.fromEntries(docs.docs.map(doc=>{
+    //             return [doc.id, {
+    //                 quantity: 0, 
+    //                 option: {
+    //                     name: doc.data().name, 
+    //                     price: doc.data().price
+    //                 }
+    //             }];
+    //         })));
+    //     });
+    // }, [user]);
 
     const updateSelection = (option: string, quantity: number) => {
         const newstate = Object.fromEntries(Object.entries(selection));
