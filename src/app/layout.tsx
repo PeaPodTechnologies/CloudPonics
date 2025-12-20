@@ -19,7 +19,7 @@ const AuthGuard: FC<PropsWithChildren> = ({ children }) => {
   const path = usePathname();
 
   useEffect(() => {
-    // console.log('Auth State:', { user, loading });
+    console.log('Auth State:', { user, loading });
     if (
       !loading &&
       !user &&
@@ -40,7 +40,6 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           <InitColorSchemeScript attribute="class" />
           <AppRouterCacheProvider options={{ enableCssLayer: true }}>
             <ThemeProvider theme={theme}>
-              {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
               <CssBaseline />
               <AuthGuard>{props.children}</AuthGuard>
             </ThemeProvider>
